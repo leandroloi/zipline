@@ -23,6 +23,7 @@ import numpy.linalg as la
 from six import iteritems
 
 import pandas as pd
+from pandas import Series
 
 from . import risk
 from . risk import (
@@ -94,8 +95,8 @@ class RiskMetricsPeriod(object):
             raise Exception(message)
 
         self.num_trading_days = len(self.benchmark_returns)
-        self.trading_day_counts = pd.stats.moments.rolling_count(
-            self.algorithm_returns, self.num_trading_days)
+        self.trading_day_counts = Series.rolling(self.algorithm_returns, self.num_trading_days).count()
+        #pd.stats.moments.rolling_count(self.algorithm_returns, self.num_trading_days)
 
         self.mean_algorithm_returns = \
             self.algorithm_returns.cumsum() / self.trading_day_counts

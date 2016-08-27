@@ -9,6 +9,7 @@ tmp/*
 #mac autosaving file
 .DS_Store
 *.py[co]
+/ENV
 
 # Installer logs
 pip-log.txt
